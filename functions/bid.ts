@@ -7,7 +7,13 @@ const db = new sqlite3.Database("../db/items.db", (error) => {
   }
   console.log("Connected to items database");
 });
-
+/**
+ * This allows a user to provide an amount that they are willing to spend on an item
+ * @param bidAmount - the amount of money
+ * @param bidder - the user
+ * @param id - item id of the item that is having bids on it
+ * @returns 
+ */
 export async function PlaceBid(bidAmount: number, bidder: string, id: number): Promise<itemDbRow | undefined> {
   return new Promise((resolve, reject) => {
     const stmt = "UPDATE items SET price=?, top_bidder=? WHERE item_id=? RETURNING *";
