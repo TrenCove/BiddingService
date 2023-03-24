@@ -4,8 +4,8 @@ import { PlaceBid } from "./bid";
 import { BuyItem } from "./buy";
 import { bidPlace, itemBuy } from "./interfaces";
 import { buyItem } from "./interfaces";
-import jwt from "jsonwebtoken";
-import { authenticateToken } from "./middleware/authenticationToken";
+//import jwt from "jsonwebtoken";
+//import cors from "Cors";
 
 
 const app: Express = express();
@@ -22,8 +22,8 @@ app.get('/', (req: Request, res: Response) => {
 
 });
 
-app.get("/testAuth", authenticateToken, (req: Request, res: Response) => {
-    res.send("Authenticated as " + req.user);
+app.get("/testAuth", (req: Request, res: Response) => {
+    res.send("bruh");
   });
 
 
@@ -41,8 +41,8 @@ app.post(
             );
 
             if(response == 200) {
-                const token = jwt.sign(req.body.item, "memes");
-                res.json(token);
+                fetch("http://localhost:3001/publish")
+                res.sendStatus(200);
             } else{
                 res.sendStatus(400);
             }
@@ -65,9 +65,8 @@ app.post(
             );
 
             if(response == 200) {
-                //call payment service?
-                const token = jwt.sign(req.body.item, "memes");
-                res.json(token);
+                fetch("http://localhost:3001/publish")
+                res.sendStatus(200);
             } else{
                 res.sendStatus(400);
             }
