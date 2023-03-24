@@ -11,7 +11,7 @@ const db = new sqlite3.Database("../db/items.db", (error) => {
  * This function allows the user to buy an item (Dutch auction)
  * @param bidder - the user
  * @param id - item id of the item that is being auctioned
- * @returns 
+ * @returns updated item
  */
 export async function BuyNow(bidder: string, id: number): Promise<itemDbRow | undefined> {
   return new Promise((resolve, reject) => {
