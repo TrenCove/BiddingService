@@ -33,7 +33,7 @@ app.post(
       if (newItem != undefined) {
         console.log(newItem);
         const response = await axios.post(
-          "http://localhost:3003/publish",
+          "http://auction-service:3003/publish", //change to localhost:3003 when running locally
           {data: {item:newItem} },
           {
             headers: {
@@ -64,7 +64,7 @@ app.post("/buyItem", authenticateToken, async (req: Request, res: Response) => {
       console.log("publishing item");
       console.log(newItem);
       const response = await axios.post(
-        "http://localhost:3003/publish",
+        "http://auction-service:3003/publish", //change to localhost:3003 when running locally
         {data: {item:newItem}},
         {
           headers: {
@@ -79,6 +79,7 @@ app.post("/buyItem", authenticateToken, async (req: Request, res: Response) => {
       res.sendStatus(400);
     }
   } catch (error) {
+    console.log(error)
     res.sendStatus(400);
   }
 });
